@@ -1,5 +1,6 @@
 var pokeApp = angular.module('pokedex', ['ngResource']);
 
+var URI = "http://pokeapi.co/api/v1/type/";
 pokeApp.config(['$resourceProvider', function($resourceProvider) {
     $resourceProvider.defaults.stripTrailingSlashes = false;
 }]);
@@ -12,6 +13,9 @@ pokeApp.controller('MyCtrl', function($scope) {
 });
 
 pokeApp.controller("CtrlList", function($scope) {
+
+	
+	
   $scope.items = [
     { name: "Peter",   value: 20 },
     { name: "Pablo",   value: 55 },
@@ -30,6 +34,13 @@ pokeApp.controller("CtrlList", function($scope) {
      $("input#id").val(optionSelected);
 
     };
+	
+	$scope.go = function () {
+	
+		var IDpoki = $("input#id").val();
+		alert (IDpoki);
+	
+	}
   
   
 });
