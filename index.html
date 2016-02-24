@@ -23,10 +23,22 @@
 			<input type="text" ng-model="id" />
 			<p>Hello {{ id }}</p>
 
-		<!-- Pokémon information -->
-		<div></div>
+		
 
 		</div>
+		
+		<div ng-controller="CtrlList">
+			<form class="form-inline">
+			  <input ng-model="query" type="text"
+				placeholder="Filter by" autofocus>
+			</form>
+			<select>
+			<option ng-repeat="coco in poki | filter:query | orderBy: 'name' ">
+			  <li>{{coco.name}}</li>
+			</option>
+			</select>
+		</div>
+		
 	</div>
 
     <!-- Dependencies -->
