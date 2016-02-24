@@ -5,3 +5,7 @@ pokeApp.config(['$resourceProvider', function($resourceProvider) {
 }]);
 
 var pokeApiUrl = "http://pokeapi.co/"
+
+pokeApp.controller('MyCtrl', function($scope) {
+    //$scope.name = 'Kaliop';
+});
