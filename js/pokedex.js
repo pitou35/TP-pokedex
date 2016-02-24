@@ -1,29 +1,45 @@
 var pokeApp = angular.module('pokedex', ['ngResource']);
 
-var URI = "http://pokeapi.co/api/v1/type/";
+pokeApp.factory('photosFactory', function($http) {
+  return{
+    getPhotos : function() {
+        return $http({
+            url: 'http://pokeapi.co/api/v2/pokemon',
+            method: 'GET'
+        })
+    }
+ }
+});
+
 pokeApp.config(['$resourceProvider', function($resourceProvider) {
     $resourceProvider.defaults.stripTrailingSlashes = false;
 }]);
 
-var pokeApiUrl = "http://pokeapi.co/"
+
 
 pokeApp.controller('MyCtrl', function($scope) {
     //$scope.name = 'Kaliop';
 	//$scope.items = ['sfovjnp', 'sdfgsdf', 'fooqsdfbqsdfbar'];
 });
 
-pokeApp.controller("CtrlList", function($scope) {
+pokeApp.controller("CtrlList", function($scope,$http) {
+	$http.get("http://pokeapi.co/api/v2/pokedex/1")
+    .success(function(response) {
+       $scope.items = response.pokemon_entries;
+    });
+   
 
-	
-	
-  $scope.items = [
+	//var lesPoke = $resource('http://pokeapi.co/api/v1/type/:id/');
+	//$scope.items=lesPoke;
+  /*$scope.items = [
     { name: "Peter",   value: 20 },
     { name: "Pablo",   value: 55 },
     { name: "Linda",   value: 20 },
     { name: "Marta",   value: 37 },
     { name: "Othello", value: 20 },
     { name: "Markus",  value: 32 }
-  ];
+  ];*/
+  //$scope.items=lesPoke.get({id:1});
   
   $scope.changeOnOption = function () {
 
@@ -35,12 +51,12 @@ pokeApp.controller("CtrlList", function($scope) {
 
     };
 	
-	$scope.go = function () {
+	/*$scope.go = function () {
 	
 		var IDpoki = $("input#id").val();
 		alert (IDpoki);
 	
-	}
+	}*/
   
   
 });
