@@ -32,12 +32,30 @@
 			  <input ng-model="query" type="text"
 				placeholder="Filter by" autofocus>
 			</form>
-			<select>
-			<option ng-repeat="coco in poki | filter:query | orderBy: 'name' ">
-			  <li>{{coco.name}}</li>
+			<select name="pokemonList" id="pokemonList" ng-model="pokiList">
+			<option ng-repeat="item in items | filter:query | orderBy: 'name' " value="{{item.name}}">
+			  <li>{{item.name}}</li>
 			</option>
 			</select>
+			
+			
+			<pre>Valeur sélectionnée = <span>{{ pokiList }}</span></pre>
+			
+			
+			
 		</div>
+		
+		<!--<div ng-controller="selectedValue">
+          
+          <p>
+          <select ng-model="selected_by_copy"
+              ng-options="opt as opt.label for opt in options">
+          </select>
+          </p>
+          <p>
+          The value selected is {{ selected_by_copy.value }}.
+          </p>
+		  </div>
 		
 	</div>
 

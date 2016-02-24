@@ -12,13 +12,46 @@ pokeApp.controller('MyCtrl', function($scope) {
 });
 
 pokeApp.controller("CtrlList", function($scope) {
-  $scope.poki = [
-    { name: "Peter",   age: 20 },
-    { name: "Pablo",   age: 55 },
-    { name: "Linda",   age: 20 },
-    { name: "Marta",   age: 37 },
-    { name: "Othello", age: 20 },
-    { name: "Markus",  age: 32 }
+  $scope.items = [
+    { name: "Peter",   value: 20 },
+    { name: "Pablo",   value: 55 },
+    { name: "Linda",   value: 20 },
+    { name: "Marta",   value: 37 },
+    { name: "Othello", value: 20 },
+    { name: "Markus",  value: 32 }
   ];
+  
+  $scope.changeOnOption = function () {
+
+        
+     var optionSelected = $("select#pokemonList option:selected").val();
+
+       
+     $("input#id").val(optionSelected);
+
+    };
+  
+  
 });
+
+
+/*pokeApp.controller('selectedValue',function($scope){
+
+  
+  
+  
+
+  $scope.options = [
+    { label: 'one', value: 1 },
+    { label: 'two', value: 2 }
+  ];
+    
+  // Although this object has the same properties as the one in $scope.options,
+  // Angular considers them different because it compares based on reference
+  $scope.selected_by_copy = { label: 'two', value: 2 };
+    
+  
+  
+});*/
+
 
