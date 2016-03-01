@@ -28,18 +28,9 @@ pokeApp.controller("CtrlList", function($scope,$http) {
        $scope.items = response.pokemon_entries;
     });
    
+	
 
-	//var lesPoke = $resource('http://pokeapi.co/api/v1/type/:id/');
-	//$scope.items=lesPoke;
-  /*$scope.items = [
-    { name: "Peter",   value: 20 },
-    { name: "Pablo",   value: 55 },
-    { name: "Linda",   value: 20 },
-    { name: "Marta",   value: 37 },
-    { name: "Othello", value: 20 },
-    { name: "Markus",  value: 32 }
-  ];*/
-  //$scope.items=lesPoke.get({id:1});
+   
   
   $scope.changeOnOption = function () {
 
@@ -57,6 +48,16 @@ pokeApp.controller("CtrlList", function($scope,$http) {
 		alert (IDpoki);
 	
 	}*/
+	
+	$scope.go = function () {
+	$scope.stuffs = [];
+	var optionSelected = $("select#pokemonList option:selected").val();
+	$http.get("http://pokeapi.co/api/v2/pokemon-species/"+optionSelected)
+    .success(function(response) {
+		alert('ceci est un resultat temporaire a ajouter au html:\n- id='+response.id+'- name=\n'+response.name+'- gender_rate=\n'+response.gender_rate+'- capture_rate=\n'+response.capture_rate+'- base_happiness=\n'+response.base_happiness+'- is_baby='+response.is_baby+'\net d autres infos a rajouter');
+       //alert(response.name);
+    });
+	};
   
   
 });

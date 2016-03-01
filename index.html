@@ -33,7 +33,7 @@
 				placeholder="Filter by" autofocus>
 			</form>
 			<select name="pokemonList" id="pokemonList" ng-model="pokiList">
-			<option ng-repeat="item in items | filter:query | orderBy: 'name' " value="{{item.pokemon_species.name}}">
+			<option ng-repeat="item in items | filter:query | orderBy: 'name' " value="{{item.entry_number}}">
 			  {{item.entry_number}} - {{item.pokemon_species.name}}
 			</option>
 			</select>
@@ -42,9 +42,15 @@
 			
 			<pre>Valeur sélectionnée = <span>{{ pokiList }}</span></pre>
 			
+			<button id="btn_go" ng-click="go()">get infos !</button>
+			<div class="res_poki">
+			</div>
+			
+			
 			
 			
 		</div>
+		
 		
 		<!--<div ng-controller="selectedValue">
           
