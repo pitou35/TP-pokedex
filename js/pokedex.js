@@ -27,6 +27,7 @@ pokeApp.controller('MyCtrl', function($scope) {
 });
 
 pokeApp.controller("CtrlList", function($scope,$http) {
+	
 	$http.get("http://pokeapi.co/api/v2/pokedex/1")
     .success(function(response) {
        $scope.items = response.pokemon_entries;
@@ -49,12 +50,7 @@ pokeApp.controller("CtrlList", function($scope,$http) {
 
     };
 	
-	/*$scope.go = function () {
 	
-		var IDpoki = $("input#id").val();
-		alert (IDpoki);
-	
-	}*/
 	
 	$scope.go = function () {
 	$loader.show();
@@ -78,7 +74,6 @@ pokeApp.controller("CtrlList", function($scope,$http) {
 						"forms_switchable":response.forms_switchable
                         
                     }; 
-		//alert('ceci est un resultat temporaire a ajouter au html:\n- id='+response.id+'- name=\n'+response.name+'- gender_rate=\n'+response.gender_rate+'- capture_rate=\n'+response.capture_rate+'- base_happiness=\n'+response.base_happiness+'- is_baby='+response.is_baby+'\net d autres infos a rajouter');
        
     });
 	};
@@ -87,23 +82,5 @@ pokeApp.controller("CtrlList", function($scope,$http) {
 });
 
 
-/*pokeApp.controller('selectedValue',function($scope){
-
-  
-  
-  
-
-  $scope.options = [
-    { label: 'one', value: 1 },
-    { label: 'two', value: 2 }
-  ];
-    
-  // Although this object has the same properties as the one in $scope.options,
-  // Angular considers them different because it compares based on reference
-  $scope.selected_by_copy = { label: 'two', value: 2 };
-    
-  
-  
-});*/
 
 

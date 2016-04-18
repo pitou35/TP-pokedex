@@ -48,9 +48,15 @@
 			<button id="btn_go" ng-click="go()">get infos !</button>
 			
 			<div id="res_poki">
+			
+			 <a href="http://pokemondb.net/pokedex/{{poke.name}}"><img src="http://img.pokemondb.net/sprites/black-white/anim/normal/{{poke.name}}.gif" alt="{{poke.name}}"></a>
+
 			<ul class="pokeInfoResultListItem list-group" ng-repeat="(key, val) in poke">
+
                         <li class="list-group-item list-group-item-info"><b>{{ key }}</b> : {{ val }}</li>
                     </ul>
+					
+					
 			</div>
 			
 			
