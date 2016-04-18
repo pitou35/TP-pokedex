@@ -1,5 +1,7 @@
 var pokeApp = angular.module('pokedex', ['ngResource']);
 
+var $loader = $('p#p_loader');
+
 pokeApp.factory('photosFactory', function($http) {
   return{
     getPhotos : function() {
@@ -26,7 +28,10 @@ pokeApp.controller("CtrlList", function($scope,$http) {
 	$http.get("http://pokeapi.co/api/v2/pokedex/1")
     .success(function(response) {
        $scope.items = response.pokemon_entries;
-    });
+    }).then(function successCallback(response)
+		{
+			$loader.hide();
+		});
    
 	
 
@@ -50,10 +55,12 @@ pokeApp.controller("CtrlList", function($scope,$http) {
 	}*/
 	
 	$scope.go = function () {
+	$loader.show();
 	$scope.stuffs = [];
 	var optionSelected = $("select#pokemonList option:selected").val();
 	$http.get("http://pokeapi.co/api/v2/pokemon-species/"+optionSelected)
     .success(function(response) {
+		$loader.hide();
 		alert('ceci est un resultat temporaire a ajouter au html:\n- id='+response.id+'- name=\n'+response.name+'- gender_rate=\n'+response.gender_rate+'- capture_rate=\n'+response.capture_rate+'- base_happiness=\n'+response.base_happiness+'- is_baby='+response.is_baby+'\net d autres infos a rajouter');
        //alert(response.name);
     });
