@@ -2,6 +2,8 @@ var pokeApp = angular.module('pokedex', ['ngResource']);
 
 var $loader = $('p#p_loader');
 
+var res = $("#res_poki");
+
 pokeApp.factory('photosFactory', function($http) {
   return{
     getPhotos : function() {
@@ -56,13 +58,28 @@ pokeApp.controller("CtrlList", function($scope,$http) {
 	
 	$scope.go = function () {
 	$loader.show();
+	res.hide();
 	$scope.stuffs = [];
 	var optionSelected = $("select#pokemonList option:selected").val();
 	$http.get("http://pokeapi.co/api/v2/pokemon-species/"+optionSelected)
     .success(function(response) {
 		$loader.hide();
-		alert('ceci est un resultat temporaire a ajouter au html:\n- id='+response.id+'- name=\n'+response.name+'- gender_rate=\n'+response.gender_rate+'- capture_rate=\n'+response.capture_rate+'- base_happiness=\n'+response.base_happiness+'- is_baby='+response.is_baby+'\net d autres infos a rajouter');
-       //alert(response.name);
+		res.show();
+		return $scope.poke = {
+                        "id": response.id,
+                        "name": response.name,
+                        "order": response.order,
+						"gender_rate": response.gender_rate,
+						"capture_rate":response.capture_rate,
+						"base_happiness":response.base_happiness,
+						"is_baby":response.is_baby,
+						"hatch_counter":response.hatch_counter,
+						"has_gender_differences":response.has_gender_differences,
+						"forms_switchable":response.forms_switchable
+                        
+                    }; 
+		//alert('ceci est un resultat temporaire a ajouter au html:\n- id='+response.id+'- name=\n'+response.name+'- gender_rate=\n'+response.gender_rate+'- capture_rate=\n'+response.capture_rate+'- base_happiness=\n'+response.base_happiness+'- is_baby='+response.is_baby+'\net d autres infos a rajouter');
+       
     });
 	};
   
